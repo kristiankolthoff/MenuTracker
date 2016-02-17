@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Just create simple XML layout with i.e a single ImageView or a custom layout
         setContentView(R.layout.activity_splash);
-        LoadingView loadingView = (LoadingView)findViewById(R.id.loadView);
+        //LoadingView loadingView = (LoadingView)findViewById(R.id.loadView);
         MenuExtractor menuExtractor = null;
         try {
             menuExtractor = new MenuExtractor(this);

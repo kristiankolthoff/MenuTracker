@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -65,8 +66,6 @@ public class NovusActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_novus);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         Log.i("MainActivity", "hier starten wir mit dem Novus screen");
@@ -75,6 +74,7 @@ public class NovusActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        this.setFragmentToWeekday();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,28 +85,18 @@ public class NovusActivity extends AppCompatActivity {
         });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_novus, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void setFragmentToWeekday() {
+        Calendar calender = Calendar.getInstance();
+        int day = calender.get(Calendar.DAY_OF_WEEK);
+        if(day != 0 && day != 1) {
+            day = day - 2;
+        } else {
+            //Set to monday if current day is saturday or sunday
+            day = 0;
         }
-
-        return super.onOptionsItemSelected(item);
+        mViewPager.setCurrentItem(day);
     }
+
 
     /**
      * A placeholder fragment containing a simple view.

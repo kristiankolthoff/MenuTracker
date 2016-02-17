@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="novusRed">#4F011B</color>
+    <color name="novusGreen">#B3FF00</color>
 </resources>
